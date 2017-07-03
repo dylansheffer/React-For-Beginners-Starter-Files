@@ -2,18 +2,15 @@ import React from 'react';
 import{ getFunName } from '../helpers';
 
 class StorePicker extends React.Component{
-    // Could use the constructor syntax to add the goToStore method to the StorePicker component
-    // constructor(){
-    //     super();
-    //     this.goToStore = this.goToStore.bind(this);
-    // }
 
     goToStore(event) {
         event.preventDefault();
         console.log('You changed the URL');
         //first grab text
-        console.log(this.storeInput.value);
+        const storeId = this.storeInput.value;
+        console.log(`Going to ${storeId}`);
         //second change route to /store/:storeid
+        this.context.router.transitionTo(`/store/${storeId}`)
     }
     
     render() {
@@ -25,6 +22,10 @@ class StorePicker extends React.Component{
         </form>
         )
     }
+}
+
+StorePicker.contextTypes = {
+    router: React.PropTypes.object
 }
 
 export default StorePicker;
